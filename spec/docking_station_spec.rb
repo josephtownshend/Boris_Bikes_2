@@ -16,13 +16,10 @@ describe DockingStation do
     expect { docking_station.release_bike }.to raise_error('No bike')
   end
 
-  it 'raise error if the docking station already contains a bike' do
+  it 'raises error if docking station is at capacity' do
     docking_station = DockingStation.new
-    bike = Bike.new
-    docking_station.dock(bike)
-    bike2 = Bike.new
-    expect { docking_station.dock(bike2) }.to raise_error('Full')
+    20.times {docking_station.dock(Bike.new)}
+    expect {docking_station.dock(Bike.new)}.to raise_error('Max Capacity')
   end
-
 
 end
