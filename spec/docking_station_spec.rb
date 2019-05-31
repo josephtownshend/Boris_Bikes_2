@@ -6,8 +6,14 @@ describe DockingStation do
 
 
   it 'releases working bikes' do
+    subject.dock(Bike.new)
     bike = subject.release_bike
     expect(bike).to be_working
+  end
+
+  it "raise error if there's no bike" do
+    docking_station = DockingStation.new
+    expect { docking_station.release_bike }.to raise_error('No bike')
   end
 
 
