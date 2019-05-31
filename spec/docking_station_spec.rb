@@ -22,4 +22,14 @@ describe DockingStation do
     expect {docking_station.dock(Bike.new)}.to raise_error('Max Capacity')
   end
 
+  it 'changes capacity when given a new apacity' do
+    docking_station = DockingStation.new(10)
+    expect(docking_station.capacity).to eq(10)
+  end
+
+  it 'defaults to DEFAULT_CAPACITY when no cpacity is given' do
+    docking_station = DockingStation.new
+    expect(docking_station.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+  end
+
 end
