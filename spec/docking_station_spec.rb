@@ -16,5 +16,13 @@ describe DockingStation do
     expect { docking_station.release_bike }.to raise_error('No bike')
   end
 
+  it 'raise error if the docking station already contains a bike' do
+    docking_station = DockingStation.new
+    bike = Bike.new
+    docking_station.dock(bike)
+    bike2 = Bike.new
+    expect { docking_station.dock(bike2) }.to raise_error('Full')
+  end
+
 
 end
