@@ -9,17 +9,27 @@ class DockingStation
   end
 
   def release_bike
-    raise 'No bike' if @bicycles.count == 0
+    raise 'No bike' if empty?
     Bike.new
     @bicycles.pop
   end
 
   def dock(bike)
-    raise 'Max Capacity' if @bicycles.count == @capacity
+    raise 'Max Capacity' if full?
     @bicycles << bike
   end
 
   def bike
     @bike
+  end
+
+private
+
+  def empty?
+    @bicycles.count == 0
+  end
+
+  def full?
+    @bicycles.count == @capacity
   end
 end
